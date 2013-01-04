@@ -86,7 +86,7 @@ $('div').safeReplace(/@([A-Za-z0-9_]+)/g, '<a href="http://twitter.com/$1">$1</a
 
 BUT WAIT!
 ---------
-
+@
 What happens if you had something like this and ran the above example?
 
 ```html
@@ -96,7 +96,7 @@ What happens if you had something like this and ran the above example?
 Well...
 
 ```html
-<div><a href="http://twitter.com/Glench"><a href="http://twitter.com/@Glench">@Glench</a></a></div>
+<div><a href="http://twitter.com/Glench"><a href="http://twitter.com/Glench">@Glench</a></a></div>
 ```
 
 As you can see, this plugin naively tries to put a link inside a link, dawg. That's no good. Use the third argument to the plugin to limit what you traverse:
