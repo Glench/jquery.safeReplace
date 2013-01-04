@@ -1,14 +1,15 @@
 (function( $ ) {
 
-    $.fn.wrapText = function(regexp, wrapFunc, doNotFollowSelector) {
+    $.fn.wrapText = function(regexp, replacer, doNotFollowSelector) {
         // there's no need to do $(this) because
         // "this" is already a jquery object
         var $this = this;
-        var notMatchSelector = notMatchSelector || null;
+        doNotFollowSelector = doNotFollowSelector || 'html,head,style,title,link,meta,script,object,iframe';
 
         // due to the nature of how we cycle through regexp matches,
         // the global flag actually behaves opposite as expected, so have to
         // construct a new regex with the same flags but the opposite of 'g'
+        regexp = (typeof regexp == 'string') ? new RegExp(regexp, 'g') : regexp;
         var regexpFlags = '';
         if (regexp.ignoreCase) { regexpFlags += 'i'; }
         if (regexp.multiline) { regexpFlags += 'm'; }
@@ -40,7 +41,11 @@
                         node = node.splitText(result[0].length);
 
                         // node containing just the text we want
-                        wrapFunc($(node.previousSibling), $(elem));
+                        if (typeof replacer == 'string') {
+                            node.previousSibling.textContent = replacer;
+                        } else {
+                            replacer($(node.previousSibling), result, $(elem));
+                        }
                     }
                 }
             }
