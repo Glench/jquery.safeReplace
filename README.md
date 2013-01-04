@@ -86,7 +86,6 @@ $('div').safeReplace(/@([A-Za-z0-9_]+)/g, '<a href="http://twitter.com/$1">$1</a
 
 BUT WAIT!
 ---------
-@
 What happens if you had something like this and ran the above example?
 
 ```html
