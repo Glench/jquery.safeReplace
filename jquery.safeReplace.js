@@ -1,6 +1,6 @@
 (function( $ ) {
 
-    $.fn.wrapText = function(regexp, replacer, doNotFollowSelector) {
+    $.fn.safeReplace = function(regexp, replacer, doNotFollowSelector) {
         // there's no need to do $(this) because
         // "this" is already a jquery object
         var $this = this;
@@ -16,7 +16,7 @@
         if (!regexp.global) { regexpFlags += 'g'; }
         regexp = new RegExp(regexp.source, regexpFlags);
 
-        var wrapText = function(elem) { // elem must be an element node
+        var safeReplace = function(elem) { // elem must be an element node
             var nodes = elem.childNodes,
             i = nodes.length,
             node, interestNode, a, result;
@@ -27,10 +27,10 @@
                     // wrapping text in anchors to not have nested anchors)
                     if (doNotFollowSelector) {
                         if(!$(node).is(doNotFollowSelector)) {
-                            wrapText(node);
+                            safeReplace(node);
                         }
                     } else {
-                        wrapText(node);
+                        safeReplace(node);
                     }
                 } else if (node.nodeType === 3) {
                     while ((result = regexp.exec(node.textContent)) !== null) {
@@ -53,7 +53,7 @@
 
         // loop through each matched element
         $this.each(function(index, element) {
-            wrapText(element);
+            safeReplace(element);
         });
     };
 })( jQuery );
