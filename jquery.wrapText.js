@@ -32,7 +32,7 @@
                         node = node.splitText(result[0].length);
 
                         // node containing just the text we want
-                        wrapFunc($(node.previousSibling));
+                        wrapFunc($(node.previousSibling), $(elem));
                     }
                 }
             }
