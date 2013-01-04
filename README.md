@@ -38,7 +38,7 @@ into this:
 <div><span>@Glench</span></div>
 ```
 
-Also supports *capture groups*:
+Also supports **capture groups**:
 
 ```javascript
 $('div').safeReplace(/(@[A-Za-z0-9_]+)/g, '$1_sucks');
