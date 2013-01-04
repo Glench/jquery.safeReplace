@@ -50,6 +50,8 @@ Now we won't look for text in 'a' elements.
 
 API
 ---
+Play around here: http://jsfiddle.net/j9wMa/
+
     $(selector).wrapText(regExp, wrappingFunc [, doNotFollowSelector])
 
 <table>
