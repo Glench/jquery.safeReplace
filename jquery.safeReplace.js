@@ -4,7 +4,7 @@
         // there's no need to do $(this) because
         // "this" is already a jquery object
         var $this = this;
-        doNotFollowSelector = doNotFollowSelector || 'html,head,style,title,link,meta,script,object,iframe';
+
 
         // due to the nature of how we cycle through regexp matches,
         // the global flag actually behaves opposite as expected, so have to
@@ -15,6 +15,14 @@
         if (regexp.multiline) { regexpFlags += 'm'; }
         if (!regexp.global) { regexpFlags += 'g'; }
         regexp = new RegExp(regexp.source, regexpFlags);
+
+        // by default do not traverse dumb elements
+        var doNotFollowDefault = 'html,head,style,title,link,meta,script,object,iframe';
+        if (doNotFollowSelector) {
+            doNotFollowSelector += doNotFollowDefault;
+        } else {
+            doNotFollowSelector = doNotFollowDefault;
+        }
 
         var safeReplace = function(elem) { // elem must be an element node
             var nodes = elem.childNodes,
@@ -44,7 +52,7 @@
                         if (typeof replacer == 'string') {
                             node.previousSibling.textContent = replacer;
                         } else {
-                            replacer($(node.previousSibling), result, $(elem));
+                            replacer($(node.previousSibling), result[0], result);
                         }
                     }
                 }
