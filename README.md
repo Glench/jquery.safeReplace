@@ -31,13 +31,13 @@ BUT WAIT!
 What happens if you had something like this and ran the plugin?
 
 ```html
-<div><a href="http://twitter.com/Glench">@Glench</a>
+<div><a href="http://twitter.com/Glench">@Glench</a></div>
 ```
 
 Well...
 
 ```html
-<div><a href="http://twitter.com/Glench"><a href="http://twitter.com/@Glench">@Glench</a></a>
+<div><a href="http://twitter.com/Glench"><a href="http://twitter.com/@Glench">@Glench</a></a></div>
 ```
 
 As you can see, this plugin naively tries to put a link inside a link, dawg. That's no good. Use the third argument to the plugin to limit what you traverse:
