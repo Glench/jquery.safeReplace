@@ -120,7 +120,7 @@ API
     </tr>
     <tr>
         <td><code>finder</code></td>
-        <td>A string or regular expression to match against. Note that if you don't provide the <code>'g'</code> flag to regular expressions, this plugin will only return the first match in a text node.</td>
+        <td>A string or regular expression to match against. Note that if you don't provide the <code>'g'</code> flag to regular expressions, this plugin will only replace the first match in a text node.</td>
         <td><code>/\d+/g</code></td>
     </tr>
     <tr>
