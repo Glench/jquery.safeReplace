@@ -1,10 +1,20 @@
-(function( $ ){
+(function( $ ) {
 
     $.fn.wrapText = function(regexp, wrapFunc, doNotFollowSelector) {
         // there's no need to do $(this) because
         // "this" is already a jquery object
         var $this = this;
         var notMatchSelector = notMatchSelector || null;
+
+        // due to the nature of how we cycle through regexp matches,
+        // the global flag actually behaves opposite as expected, so have to
+        // construct a new regex with the same flags but the opposite of 'g'
+        var regexpFlags = '';
+        if (regexp.ignoreCase) { regexpFlags += 'i'; }
+        if (regexp.multiline) { regexpFlags += 'm'; }
+        if (!regexp.global) { regexpFlags += 'g'; }
+        regexp = new RegExp(regexp.source, regexpFlags);
+
         var wrapText = function(elem) { // elem must be an element node
             var nodes = elem.childNodes,
             i = nodes.length,
@@ -22,9 +32,7 @@
                         wrapText(node);
                     }
                 } else if (node.nodeType === 3) {
-                    // 1: Please note that the regexp has NO global flag,
-                    //    and that `node.textContent` shrinks when an address is found
-                    while (result = regexp.exec(node.textContent)) {
+                    while ((result = regexp.exec(node.textContent)) !== null) {
                         // 2: Contact <SPLIT> me@example.com for details
                         node = node.splitText(result.index);
 
