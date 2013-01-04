@@ -63,7 +63,7 @@ into:
 <div><span><a href="http://twitter.com/@Glench">@Glench</a></span></div>
 ```
 
-You could also do the abov example like this:
+You could also do the above example like this:
 
 ```javascript
 $('div').safeReplace(/@([A-Za-z0-9_]+)/g, '<a href="http://twitter.com/$1">$1</a>');
