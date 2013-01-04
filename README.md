@@ -63,6 +63,12 @@ into:
 <div><span><a href="http://twitter.com/@Glench">@Glench</a></span></div>
 ```
 
+You could also do the abov example like this:
+
+```javascript
+$('div').safeReplace(/@([A-Za-z0-9_]+)/g, '<a href="http://twitter.com/$1">$1</a>');
+```
+
 BUT WAIT!
 ---------
 
@@ -88,7 +94,6 @@ Now we won't look for text in 'a' elements. By default, safeReplace won't look a
 
 API
 ---
-Play around here: http://jsfiddle.net/j9wMa/
 
     $(selector).safeReplace(finder, replacer [, doNotFollowSelector])
 

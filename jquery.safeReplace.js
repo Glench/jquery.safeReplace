@@ -1,6 +1,6 @@
 (function( $ ) {
 
-    $.fn.safeReplace = function(regexp, replacer, doNotFollowSelector) {
+    $.fn.safeReplace = function(regexp, replace, doNotFollowSelector) {
         // there's no need to do $(this) because
         // "this" is already a jquery object
         var $this = this;
@@ -16,6 +16,17 @@
         if (!regexp.global) { regexpFlags += 'g'; }
         regexp = new RegExp(regexp.source, regexpFlags);
 
+        // if a string is provided, turn into a function
+        var replacer;
+        if (typeof replace == 'string') {
+            replacer = function($matchedTextNode, matchedText, regExpMatch) {
+                var newElement = matchedText.replace(regexp, replace);
+                $matchedTextNode.replaceWith(newElement);
+            };
+        } else {
+            replacer = replace;
+        }
+
         // by default do not traverse dumb elements
         var doNotFollowDefault = 'html,head,style,title,link,meta,script,object,iframe';
         if (doNotFollowSelector) {
@@ -27,7 +38,7 @@
         var safeReplace = function(elem) { // elem must be an element node
             var nodes = elem.childNodes,
             i = nodes.length,
-            node, interestNode, a, result;
+            node, a, result;
             while (node = nodes[--i]) {
                 if (node.nodeType === 1) {
                     // recurse down to next node unless we specify a selector
@@ -49,11 +60,7 @@
                         node = node.splitText(result[0].length);
 
                         // node containing just the text we want
-                        if (typeof replacer == 'string') {
-                            node.previousSibling.textContent = replacer;
-                        } else {
-                            replacer($(node.previousSibling), result[0], result);
-                        }
+                        replacer($(node.previousSibling), result[0], result);
                     }
                 }
             }
