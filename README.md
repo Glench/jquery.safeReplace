@@ -6,11 +6,11 @@ Find and wrap text in jQuery (or do other things!).
 Search from a root element (or elements) for text matching a regular expression:
 
 ```javascript
-var wrapTwitter = function($textNode) {
+var wrapTwitterLink = function($textNode) {
     $textNode.wrap('<a href="http://twitter.com/'+ $textNode.text() +'">')
 };
 
-$('div').wrapText(/@([A-Za-z0-9_]+)/g, wrapTwitter);
+$('div').wrapText(/@([A-Za-z0-9_]+)/g, wrapTwitterLink);
 ```
 
 That will turn this:
@@ -43,7 +43,7 @@ Well...
 As you can see, this plugin naively tries to put a link inside a link, dawg. That's no good. Use the third argument to the plugin to limit what you traverse:
 
 ```javascript
-$('div').wrapText(/@([A-Za-z0-9_]+)/g, wrapTwitter, 'a');
+$('div').wrapText(/@([A-Za-z0-9_]+)/g, wrapTwitterLink, 'a');
 ```
 
 Now we won't look for text in 'a' elements.
