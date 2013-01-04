@@ -18,13 +18,13 @@ into this:
 <div><span>half-full</span></div>
 ```
 
-Regular Experssion
+Regular Expression
 ------------------
 
 Search from a root element (or elements) for text matching a regular expression.
 
 ```javascript
-$('div').safeReplace(/@([A-Za-z0-9_]+)/g, '@Glench');
+$('div').safeReplace(/@[A-Za-z0-9_]+/g, '@Glench');
 ```
 
 Turns this:
@@ -36,6 +36,21 @@ Turns this:
 into this:
 ```html
 <div><span>@Glench</span></div>
+```
+
+Also supports *capture groups*:
+
+```javascript
+$('div').safeReplace(/(@[A-Za-z0-9_]+)/g, '$1_sucks');
+```
+
+Turns this:
+
+```html
+<div><span>@Jmondo</span></div>
+```
+```html
+<div><span>@Jmondo_sucks</span></div>
 ```
 
 Function
