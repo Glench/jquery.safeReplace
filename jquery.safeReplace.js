@@ -28,7 +28,7 @@
         }
 
         // by default do not traverse dumb elements
-        var doNotFollowDefault = 'html,head,style,title,link,meta,script,object,iframe';
+        var doNotFollowDefault = 'html,head,style,title,link,meta,script,object,iframe,noscript';
         if (doNotFollowSelector) {
             doNotFollowSelector += doNotFollowDefault;
         } else {
