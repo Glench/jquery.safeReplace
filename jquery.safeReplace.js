@@ -36,7 +36,8 @@
         }
 
         var safeReplace = function(elem) { // elem must be an element node
-            var nodes = elem.childNodes,
+            // can either be a normal element (has children) or a text node
+            var nodes = node.nodeType === 3 ? elem.childNodes : [elem],
             i = nodes.length,
             node, a, result;
             while (node = nodes[--i]) {
@@ -70,5 +71,8 @@
         $this.each(function(index, element) {
             safeReplace(element);
         });
+
+        // make chainable
+        return $this;
     };
 })( jQuery );
