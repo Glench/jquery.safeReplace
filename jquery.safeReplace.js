@@ -37,7 +37,7 @@
 
         var safeReplace = function(elem) { // elem must be an element node
             // can either be a normal element (has children) or a text node
-            var nodes = node.nodeType === 3 ? elem.childNodes : [elem],
+            var nodes = elem.nodeType === 3 ? elem.childNodes : [elem],
             i = nodes.length,
             node, a, result;
             while (node = nodes[--i]) {
