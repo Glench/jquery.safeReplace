@@ -1,7 +1,7 @@
 jquery.safeReplace
 ===============
 
-Search and replace without messing up removing html content! Very awesome for browser extensions like in Chrome and Firefox.
+Search and replace text in the DOM without messing up or removing html content! Very awesome for Chrome and Firefox extensions! Will not remove event bindings! You buy now!
 
 ```javascript
 $('div').safeReplace('half-empty', 'half-full');
