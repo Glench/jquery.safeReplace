@@ -52,7 +52,7 @@
                         safeReplace(node);
                     }
                 } else if (node.nodeType === 3) {
-                    while ((result = regexp.exec(node.textContent)) !== null) {
+                    while ((result = regexp.exec(node.data)) !== null) {
                         // 2: Contact <SPLIT> me@example.com for details
                         node = node.splitText(result.index);
 
