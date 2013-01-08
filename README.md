@@ -137,7 +137,7 @@ API
     <tr>
         <td><em>doNotFollowSelector</em></td>
         <td>A jQuery selector used to determine if this plugin should traverse into an element. If an element in the traversal matches this selector,  it will be skipped. By default it will ignore: html, head, style, title, link, meta, script, object, iframe, noscript</td>
-        <td><code>'a:visible'</code></td>
+        <td><code>'code, pre'</code></td>
     </tr>
 </table>
 
