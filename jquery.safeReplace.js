@@ -35,11 +35,28 @@
             doNotFollowSelector = doNotFollowDefault;
         }
 
-        var safeReplace = function(elem) { // elem must be an element node
+        var safeReplace = function(elem) {
             // can either be a normal element (has children) or a text node
-            var nodes = elem.nodeType === 3 ? elem.childNodes : [elem],
+            var nodes = elem.childNodes,
             i = nodes.length,
-            node, a, result;
+            node, a, result,
+            splitNode = function(node) {
+                while ((result = regexp.exec(node.data)) !== null) {
+                    // 2: Contact <SPLIT> me@example.com for details
+                    node = node.splitText(result.index);
+
+                    // 2: Contact <SPLIT>me@example.com<SPLIT> for details
+                    node = node.splitText(result[0].length);
+
+                    // node containing just the text we want
+                    replacer($(node.previousSibling), result[0], result);
+                }
+            };
+
+            if (!i) {
+                // if it has no child elements, a text node was passed in
+                splitNode(elem);
+            }
             while (node = nodes[--i]) {
                 if (node.nodeType === 1) {
                     // recurse down to next node unless we specify a selector
@@ -53,16 +70,7 @@
                         safeReplace(node);
                     }
                 } else if (node.nodeType === 3) {
-                    while ((result = regexp.exec(node.data)) !== null) {
-                        // 2: Contact <SPLIT> me@example.com for details
-                        node = node.splitText(result.index);
-
-                        // 2: Contact <SPLIT>me@example.com<SPLIT> for details
-                        node = node.splitText(result[0].length);
-
-                        // node containing just the text we want
-                        replacer($(node.previousSibling), result[0], result);
-                    }
+                    splitNode(node);
                 }
             }
         };

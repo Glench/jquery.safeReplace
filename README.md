@@ -14,6 +14,7 @@ Turns this:
 ```
 
 into this:
+
 ```html
 <div><span>half-full</span></div>
 ```
@@ -34,6 +35,7 @@ Turns this:
 ```
 
 into this:
+
 ```html
 <div><span>@Glench</span></div>
 ```
@@ -49,6 +51,9 @@ Turns this:
 ```html
 <div><span>@Jmondo</span></div>
 ```
+
+into this:
+
 ```html
 <div><span>@Jmondo_sucks</span></div>
 ```
