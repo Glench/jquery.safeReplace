@@ -1,0 +1,29 @@
+{
+    "name": "safeReplace",
+    "version": "1.0.0",
+    "title": "safeReplace",
+    "description": "Find and replace/wrap text non-destructively in jQuery",
+    "author": {
+        "name": "Glen Chiacchieri",
+        "url": "http://glench.com"
+    },
+    "bugs": "https://github.com/Glench/jquery.safeReplace/issues",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.6"
+    },
+    "keywords": [
+        "replace",
+        "regular expression",
+        "regex",
+        "regexp",
+        "wrap",
+        "insert"
+    ],
+    "homepage": "https://github.com/Glench/jquery.safeReplace"
+}
