@@ -6,10 +6,17 @@
         var $this = this;
 
 
+        // escape string in order to construct a regexp
+        var regexpEscape = function(s) {
+            return s.replace(/[\-\/\\\^$*+?.()|\[\]{}]/g, '\\$&');
+        };
+
         // due to the nature of how we cycle through regexp matches,
         // the global flag actually behaves opposite as expected, so have to
         // construct a new regex with the same flags but the opposite of 'g'
-        regexp = (typeof regexp == 'string') ? new RegExp(regexp, 'g') : regexp;
+        if (typeof regexp == 'string') {
+            regexp = new RegExp(regexpEscape(regexp), 'g');
+        }
         var regexpFlags = '';
         if (regexp.ignoreCase) { regexpFlags += 'i'; }
         if (regexp.multiline) { regexpFlags += 'm'; }
