@@ -83,7 +83,7 @@
         };
 
         // loop through each matched element
-        $this.each(function(index, element) {
+        $this.not(doNotFollowSelector).each(function(index, element) {
             safeReplace(element);
         });
 
