@@ -11,6 +11,15 @@
             return s.replace(/[\-\/\\\^$*+?.()|\[\]{}]/g, '\\$&');
         };
 
+        if (!Element.prototype.matchesSelector) {
+            Element.prototype.matchesSelector =
+                Element.prototype.matches ||
+                Element.prototype.webkitMatchesSelector ||
+                Element.prototype.mozMatchesSelector ||
+                Element.prototype.msMatchesSelector ||
+                Element.prototype.oMatchesSelector;
+        }
+
         // due to the nature of how we cycle through regexp matches,
         // the global flag actually behaves opposite as expected, so have to
         // construct a new regex with the same flags but the opposite of 'g'
@@ -70,7 +79,7 @@
                     // to not recurse down into (such as an anchor if we are
                     // wrapping text in anchors to not have nested anchors)
                     if (doNotFollowSelector) {
-                        if(!$(node).is(doNotFollowSelector)) {
+                        if(!node.matchesSelector(doNotFollowSelector)) {
                             safeReplace(node);
                         }
                     } else {

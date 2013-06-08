@@ -1,6 +1,6 @@
 {
     "name": "safeReplace",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "title": "safeReplace",
     "description": "Find and replace/wrap text non-destructively in jQuery",
     "author": {
