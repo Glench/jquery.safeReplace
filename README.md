@@ -143,4 +143,4 @@ API
 
 Note: If you get double-wrapping, be more careful with your selectors. For example, try not to use $('div') when there are a bunch of nested divs.
 
-
+Works in most browsers except IE8. If you need IE8 compatability, let me know.
