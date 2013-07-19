@@ -1,6 +1,6 @@
 (function( $ ) {
 
-    $.fn.safeReplace = function(regexp, replace, doNotFollowSelector) {
+    $.fn.safeReplace = function(regexp, replace, doNotFollowSelector, doNotFollowHidden) {
         // there's no need to do $(this) because
         // "this" is already a jquery object
         var $this = this;
@@ -51,6 +51,15 @@
             doNotFollowSelector = doNotFollowDefault;
         }
 
+        // add option for traversing hidden elements
+        var followHidden = !doNotFollowHidden;
+        var nodeIsHidden = function(node) {
+            // roughly follows jquery ':hidden' selector
+            return (node.style.display == 'none' ||
+            (node.attributes.type && node.attributes.type.value == 'hidden') ||
+            (node.offsetWidth === 0 && node.offsetHeight === 0));
+        };
+
         var safeReplace = function(elem) {
             // can either be a normal element (has children) or a text node
             var nodes = elem.childNodes,
@@ -79,7 +88,8 @@
                     // to not recurse down into (such as an anchor if we are
                     // wrapping text in anchors to not have nested anchors)
                     if (doNotFollowSelector) {
-                        if(!node.matchesSelector(doNotFollowSelector)) {
+                        if(!node.matchesSelector(doNotFollowSelector) &&
+                        (followHidden || !nodeIsHidden(node) )) {
                             safeReplace(node);
                         }
                     } else {
