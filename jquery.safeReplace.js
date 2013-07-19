@@ -56,8 +56,8 @@
         var nodeIsHidden = function(node) {
             // roughly follows jquery ':hidden' selector
             return (node.style.display == 'none' ||
-            (node.attributes.type && node.attributes.type.value == 'hidden') ||
-            (node.offsetWidth === 0 && node.offsetHeight === 0));
+            (node.attributes.type && node.attributes.type.value == 'hidden'));
+            // does not check for width/height = 0 because it's too slow!
         };
 
         var safeReplace = function(elem) {
@@ -88,7 +88,7 @@
                     // to not recurse down into (such as an anchor if we are
                     // wrapping text in anchors to not have nested anchors)
                     if (doNotFollowSelector) {
-                        if(!node.matchesSelector(doNotFollowSelector) &&
+                        if (!node.matchesSelector(doNotFollowSelector) &&
                         (followHidden || !nodeIsHidden(node) )) {
                             safeReplace(node);
                         }
