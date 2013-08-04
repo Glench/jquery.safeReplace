@@ -114,7 +114,7 @@ Now we won't look for text in 'a' elements. By default, safeReplace won't look a
 API
 ---
 
-    $(selector).safeReplace(finder, replacer [, doNotFollowSelector])
+    $(selector).safeReplace(finder, replacer [, doNotFollowSelector, doNotFollowHidden])
 
 <table>
     <tr>
