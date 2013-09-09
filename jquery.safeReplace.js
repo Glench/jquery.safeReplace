@@ -1,3 +1,4 @@
+// Glen Chiacchieri, 2013
 (function( $ ) {
 
     $.fn.safeReplace = function(regexp, replace, doNotFollowSelector, doNotFollowHidden) {
