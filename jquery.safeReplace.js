@@ -11,6 +11,7 @@
             return s.replace(/[\-\/\\\^$*+?.()|\[\]{}]/g, '\\$&');
         };
 
+        // shim for matching element by css selector
         if (!Element.prototype.matchesSelector) {
             Element.prototype.matchesSelector =
                 Element.prototype.matches ||
@@ -89,7 +90,8 @@
                     // wrapping text in anchors to not have nested anchors)
                     if (doNotFollowSelector) {
                         if (!node.matchesSelector(doNotFollowSelector) &&
-                        (followHidden || !nodeIsHidden(node) )) {
+                        (followHidden || !nodeIsHidden(node)) &&
+                        node.textContent.trim() !== '') {
                             safeReplace(node);
                         }
                     } else {
